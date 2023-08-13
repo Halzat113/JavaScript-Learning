@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Super Simple Rock Paper Scissors Game</title>
+    </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="
+      const randNum = Math.floor(Math.random()*3);   //this will create a random number
+      let computer='';
+      if (randNum===0){
+        computer = 'rock';
+        alert(`You picked rock, computer picked ${computer}, tie`);
+      }else if (randNum===1){
+        computer = 'paper';
+        alert(`You picked rock, computer picked ${computer}, computer wins`);
+        score--;
+      }else {
+        computer = 'scissors';
+        alert(`You picked rock, computer picked ${computer}, you win`);
+        score++;
+      }
+      console.log(`Your score ${score}`);
+    ">Rock</button>
+    <button onclick="
+          const randNum = Math.floor(Math.random()*3);   //this will create a random number
+      let computer='';
+      if (randNum===0){
+        computer = 'rock';
+        alert(`You picked paper, computer picked ${computer}, you win`);
+        score++;
+      }else if (randNum===1){
+        computer = 'paper';
+        alert(`You picked paper, computer picked ${computer}, tie`);
+      }else {
+        computer = 'scissors';
+        alert(`You picked paper, computer picked ${computer}, computer wins`);
+        score--;
+      }
+            console.log(`Your score ${score}`);
+        ">Paper</button>
+    <button onclick="
+      const randNum = Math.floor(Math.random()*3);   //this will create a random number
+      let computer='';
+      if (randNum===0){
+        computer = 'rock';
+        alert(`You picked scissors, computer picked ${computer}, computer wins`);
+        score--;
+      }else if (randNum===1){
+        computer = 'paper';
+        alert(`You picked scissors, computer picked ${computer}, you win`);
+        score++;
+      }else {
+        computer = 'scissors';
+        alert(`You picked scissors, computer picked ${computer}, tie`);
+      }
+      console.log(`Your score ${score}`);
+      ">Scissors</button>
+
+    <script>
+      let score = 0;
+    </script>
+  </body>
+</html>
