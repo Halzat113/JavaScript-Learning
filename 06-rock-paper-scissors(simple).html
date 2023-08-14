@@ -6,59 +6,57 @@
   <body>
     <p>Rock Paper Scissors</p>
     <button onclick="
-      const randNum = Math.floor(Math.random()*3);   //this will create a random number
-      let computer='';
-      if (randNum===0){
-        computer = 'rock';
-        alert(`You picked rock, computer picked ${computer}, tie`);
-      }else if (randNum===1){
-        computer = 'paper';
-        alert(`You picked rock, computer picked ${computer}, computer wins`);
-        score--;
+      pickComputerMove();
+      if (computer==='rock'){
+        result = 'Tie';
+      } else if(computer==='paper') {
+        result = 'You lose';
       }else {
-        computer = 'scissors';
-        alert(`You picked rock, computer picked ${computer}, you win`);
-        score++;
+        result = 'You win';
       }
-      console.log(`Your score ${score}`);
+      alert(`You picked rock. Computer picked ${computer}. ${result}`)
     ">Rock</button>
+
     <button onclick="
-          const randNum = Math.floor(Math.random()*3);   //this will create a random number
-      let computer='';
-      if (randNum===0){
-        computer = 'rock';
-        alert(`You picked paper, computer picked ${computer}, you win`);
-        score++;
-      }else if (randNum===1){
-        computer = 'paper';
-        alert(`You picked paper, computer picked ${computer}, tie`);
+      pickComputerMove();
+      if (computer==='rock'){
+        result = 'You win';
+      } else if(computer==='paper') {
+        result = 'Tie';
       }else {
-        computer = 'scissors';
-        alert(`You picked paper, computer picked ${computer}, computer wins`);
-        score--;
+        result = 'You lose';
       }
-            console.log(`Your score ${score}`);
+      alert(`You picked paper. Computer picked ${computer}. ${result}`)
         ">Paper</button>
+
     <button onclick="
-      const randNum = Math.floor(Math.random()*3);   //this will create a random number
-      let computer='';
-      if (randNum===0){
-        computer = 'rock';
-        alert(`You picked scissors, computer picked ${computer}, computer wins`);
-        score--;
-      }else if (randNum===1){
-        computer = 'paper';
-        alert(`You picked scissors, computer picked ${computer}, you win`);
-        score++;
+      pickComputerMove();
+      if (computer==='rock'){
+        result = 'you win';
+      } else if(computer==='paper') {
+        result = 'You lose';
       }else {
-        computer = 'scissors';
-        alert(`You picked scissors, computer picked ${computer}, tie`);
+        result = 'tie';
       }
-      console.log(`Your score ${score}`);
+      alert(`You picked scissors. Computer picked ${computer}. ${result}`)
       ">Scissors</button>
 
     <script>
+      let computer;
       let score = 0;
+      let result = '';
+      function pickComputerMove(){
+        const randNum = Math.floor(Math.random()*3);   //this will create a random number
+        if (randNum===0){
+          computer = 'rock';
+        }else if (randNum===1){
+          computer = 'paper';
+        }else {
+          computer = 'scissors';
+        }
+        console.log(`Your score ${score}`);
+      }
+
     </script>
   </body>
 </html>
