@@ -14,7 +14,7 @@
       }else {
         result = 'You win';
       }
-      alert(`You picked rock. Computer picked ${computer}. ${result}`)
+      alert(`You picked rock. Computer picked ${computer}. ${result} Your score: ${calculateScore(result)}`)
     ">Rock</button>
 
     <button onclick="
@@ -26,7 +26,7 @@
       }else {
         result = 'You lose';
       }
-      alert(`You picked paper. Computer picked ${computer}. ${result}`)
+      alert(`You picked paper. Computer picked ${computer}. ${result} Your score: ${calculateScore(result)}`)
         ">Paper</button>
 
     <button onclick="
@@ -38,7 +38,7 @@
       }else {
         result = 'tie';
       }
-      alert(`You picked scissors. Computer picked ${computer}. ${result}`)
+      alert(`You picked scissors. Computer picked ${computer}. ${result}. Your score: ${calculateScore(result)}`)
       ">Scissors</button>
 
     <script>
@@ -54,7 +54,16 @@
         }else {
           computer = 'scissors';
         }
-        console.log(`Your score ${score}`);
+      }
+
+      function calculateScore(msg){
+        if (msg.includes('win')){
+          score++;
+        } else if(msg.includes('lose')){
+          score--;
+        }
+
+        return score;
       }
 
     </script>
