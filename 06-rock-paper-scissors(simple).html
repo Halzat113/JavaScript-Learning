@@ -14,7 +14,7 @@
       }else {
         result = 'You win';
       }
-      alert(`You picked rock. Computer picked ${computer}. ${result} Your score: ${calculateScore(result)}`)
+      alert(displayMsg('rock',computer));
     ">Rock</button>
 
     <button onclick="
@@ -26,7 +26,7 @@
       }else {
         result = 'You lose';
       }
-      alert(`You picked paper. Computer picked ${computer}. ${result} Your score: ${calculateScore(result)}`)
+      alert(displayMsg('paper',computer));
         ">Paper</button>
 
     <button onclick="
@@ -38,13 +38,37 @@
       }else {
         result = 'tie';
       }
-      alert(`You picked scissors. Computer picked ${computer}. ${result}. Your score: ${calculateScore(result)}`)
+        alert(displayMsg('scissors',computer));
       ">Scissors</button>
+
+    <button onclick="
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+      localStorage.removeItem('score')
+      console.log('Scores have been reset');
+        ">Reset Score</button>
 
     <script>
       let computer;
-      let score = 0;
       let result = '';
+      let score= JSON.parse(localStorage.getItem('score'))||
+              {
+        wins: 0,
+        losses: 0,
+        ties: 0
+      };
+
+      /*
+      if(!score){
+        score = {
+          wins: 0,
+          losses: 0,
+          ties: 0
+        };
+      }
+
+       */
       function pickComputerMove(){
         const randNum = Math.floor(Math.random()*3);   //this will create a random number
         if (randNum===0){
@@ -56,14 +80,18 @@
         }
       }
 
-      function calculateScore(msg){
-        if (msg.includes('win')){
-          score++;
-        } else if(msg.includes('lose')){
-          score--;
+      function displayMsg(yourMove,computerMove){
+        if (result.includes('win')){
+          score.wins++;
+        }else if (result.includes('lose')){
+          score.losses++;
+        }else {
+          score.ties++;
         }
 
-        return score;
+        localStorage.setItem('score',JSON.stringify(score));
+        return (`You picked ${yourMove}. Computer picked ${computerMove}. ${result}.
+        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`)
       }
 
     </script>
