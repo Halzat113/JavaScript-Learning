@@ -8,6 +8,16 @@
         <button onclick="
             subscribe();
         " class="js-subscribe-button">Subscribe</button>
+        <p>Amazon Shipping Calculator</p>
+        <input placeholder="Cost of order" class="js-cost-input"
+        onkeydown="
+            handleCostKeydown();
+        "
+        >
+        <button onclick="
+            calculateTotal();
+        ">Calculate</button>
+        <p class="js-total-cost"></p>
 
         <script>
             function subscribe(){
@@ -16,6 +26,22 @@
                     button.innerText = 'Subscribed';
                 } else{
                     button.innerHTML = 'Subscribe';
+                }
+            }
+
+            function calculateTotal(){
+               let cost = Number(document.querySelector('.js-cost-input').value);
+               if (cost<40){
+                   cost = cost + 10;
+               }
+
+               document.querySelector('.js-total-cost')
+                   .innerHTML = `$${cost}`;
+            }
+
+            function handleCostKeydown(){
+                if (event.key==='Enter'){
+                    calculateTotal();
                 }
             }
         </script>
