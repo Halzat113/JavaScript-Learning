@@ -6,8 +6,18 @@
     </head>
     <body>
         <button>hello</button>
+        <button class="js-button",
+        onclick="
+            buttonElement.innerHTML = 'Clicked';
+        ">Second button</button>
 
         <script>
+            console.log(document.querySelector('button').innerHTML);
+            document.querySelector('button')
+                .innerHTML = 'Changed';
+
+            const buttonElement = document.querySelector('.js-button');
+            /*
             console.log(document.title);
             document.title = 'Changed';
 
