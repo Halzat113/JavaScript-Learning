@@ -8,13 +8,14 @@
     <button onclick="
       pickComputerMove();
       if (computer==='rock'){
-        result = 'Tie';
+        result = 'tie';
       } else if(computer==='paper') {
         result = 'You lose';
       }else {
         result = 'You win';
       }
-      alert(displayMsg('rock',computer));
+      // alert(displayMsg('rock',computer));
+       displayMsg('rock');
     ">Rock</button>
 
     <button onclick="
@@ -22,12 +23,12 @@
       if (computer==='rock'){
         result = 'You win';
       } else if(computer==='paper') {
-        result = 'Tie';
+        result = 'tie';
       }else {
         result = 'You lose';
       }
-      alert(displayMsg('paper',computer));
-        ">Paper</button>
+      displayMsg('paper')
+             ">Paper</button>
 
     <button onclick="
       pickComputerMove();
@@ -38,16 +39,20 @@
       }else {
         result = 'tie';
       }
-        alert(displayMsg('scissors',computer));
+        displayMsg('scissors');
       ">Scissors</button>
 
+    <p class="js-result"></p>
+    <p class="js-move"></p>
     <p class="js-score"></p>
 
     <button onclick="
       score.wins = 0;
       score.losses = 0;
       score.ties = 0;
-      localStorage.removeItem('score')
+      result = '';
+      localStorage.removeItem('score');
+      displayMsg();
       console.log('Scores have been reset');
         ">Reset Score</button>
 
@@ -61,8 +66,7 @@
         ties: 0
       };
 
-      document.querySelector('.js-score')
-              .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+     displayMsg();
       /*
       if(!score){
         score = {
@@ -74,7 +78,7 @@
 
        */
       function pickComputerMove(){
-        const randNum = Math.floor(Math.random()*3);   //this will create a random number
+        const randNum = Math.floor(Math.random()*3);   //this will create a random number 0 to 2
         if (randNum===0){
           computer = 'rock';
         }else if (randNum===1){
@@ -84,18 +88,22 @@
         }
       }
 
-      function displayMsg(yourMove,computerMove){
+      function displayMsg(playerMove){
         if (result.includes('win')){
           score.wins++;
         }else if (result.includes('lose')){
           score.losses++;
-        }else {
+        }else if (result.includes('tie')){
           score.ties++;
         }
 
         localStorage.setItem('score',JSON.stringify(score));
-        return (`You picked ${yourMove}. Computer picked ${computerMove}. ${result}.
-        Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`)
+        document.querySelector('.js-result')
+                .innerHTML = result;
+        document.querySelector('.js-move')
+                .innerHTML = `You ${playerMove} - Computer ${computer}`;
+        document.querySelector('.js-score')
+                .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
       }
 
     </script>
