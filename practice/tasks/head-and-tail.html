@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Head And Tail</title>
+    </head>
+    <body>
+        <button class="js-head" onclick="
+            displayMsg(document.querySelector('.js-head').innerText);
+            ">heads</button>
+    <button class="js-tails" onclick="
+            displayMsg(document.querySelector('.js-tails').innerText);
+            ">tails</button>
+        <p class="js-result"></p>
+    <script>
+        function displayMsg(result){
+            document.querySelector('.js-result')
+                .innerHTML = `You chose: ${result}`
+        }
+    </script>
+    </body>
+</html>
