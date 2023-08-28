@@ -12,60 +12,70 @@
           font-size: 30px;
           font-weight: bold;
         }
+        .move-icon{
+          height: 50px;
+        }
+
+        .move-button{
+          background-color: transparent;
+          border: 3px solid white;
+          width: 120px;
+          height: 130px;
+          border-radius:60px;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+
+        .result{
+          font-size: 25px;
+          font-weight: bold;
+          margin-top: 50px;
+        }
+        .score{
+          margin-top: 60px;
+        }
+
+        .reset-score-button{
+          background-color: white;
+          border: none;
+          font-size: 15px;
+          padding: 10px 15px;
+          cursor: pointer;
+        }
       </style>
     </head>
   <body>
     <p class="title">Rock Paper Scissors</p>
+
     <button onclick="
       pickComputerMove();
-      if (computer==='rock'){
-        result = 'tie';
-      } else if(computer==='paper') {
-        result = 'You lose';
-      }else {
-        result = 'You win';
-      }
-      // alert(displayMsg('rock',computer));
+        playGame('rock');
        displayMsg('rock');
-    ">Rock</button>
+    " class="move-button">
+      <img src="images/rock-emoji.png" class="move-icon">
+    </button>
 
     <button onclick="
       pickComputerMove();
-      if (computer==='rock'){
-        result = 'You win';
-      } else if(computer==='paper') {
-        result = 'tie';
-      }else {
-        result = 'You lose';
-      }
-      displayMsg('paper')
-             ">Paper</button>
+      playGame('paper');
+      displayMsg('paper');
+             " class="move-button">
+      <img src="images/paper-emoji.png" class="move-icon"></button>
 
     <button onclick="
       pickComputerMove();
-      if (computer==='rock'){
-        result = 'you win';
-      } else if(computer==='paper') {
-        result = 'You lose';
-      }else {
-        result = 'tie';
-      }
+        playGame('scissors')
         displayMsg('scissors');
-      ">Scissors</button>
+      " class="move-button">
+      <img src="images/scissors-emoji.png" class="move-icon"></button>
 
-    <p class="js-result"></p>
+    <p class="js-result result"></p>
     <p class="js-move"></p>
-    <p class="js-score"></p>
+    <p class="js-score score"></p>
 
     <button onclick="
-      score.wins = 0;
-      score.losses = 0;
-      score.ties = 0;
-      result = '';
-      localStorage.removeItem('score');
-      displayMsg();
-      console.log('Scores have been reset');
-        ">Reset Score</button>
+      resetScore();
+        " class="reset-score-button">Reset Score</button>
 
     <script>
       let computer;
@@ -112,9 +122,48 @@
         document.querySelector('.js-result')
                 .innerHTML = result;
         document.querySelector('.js-move')
-                .innerHTML = `You ${playerMove} - Computer ${computer}`;
+                .innerHTML = `You <img src="images/${playerMove}-emoji.png" class="move-icon"> - Computer <img src="images/${computer}-emoji.png" class="move-icon">`;
         document.querySelector('.js-score')
                 .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+      }
+
+      function playGame(player_move){
+        if (player_move==='rock'){
+          if (computer==='rock'){
+            result = 'Tie';
+          } else if(computer==='paper') {
+            result = 'You lose';
+          }else {
+            result = 'You win';
+          }
+        } else if (player_move==='paper'){
+          if (computer==='rock'){
+            result = 'You win';
+          } else if(computer==='paper') {
+            result = 'Tie';
+          }else {
+            result = 'You lose';
+          }
+        }else if (player_move==='scissors'){
+          if (computer==='rock'){
+            result = 'you win';
+          } else if(computer==='paper') {
+            result = 'You lose';
+          }else {
+            result = 'Tie';
+          }
+        }
+      }
+
+      function resetScore(){
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        result = '';
+        localStorage.removeItem('score');
+        displayMsg();
+        document.querySelector('.js-move').innerHTML='';
+        console.log('Scores have been reset');
       }
 
     </script>
